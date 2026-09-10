@@ -248,32 +248,95 @@ button { font: inherit; cursor: pointer; }
 .hero-actions { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
 
 /* ==========================================================================
-   Portfolio
+   Portfolio — filter bar
    ========================================================================== */
-.project-grid {
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: var(--space-md);
+}
+.filter-btn {
+  background: none;
+  border: 1.5px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.filter-btn:hover { border-color: var(--color-text); color: var(--color-text); }
+.filter-btn.is-active {
+  background: var(--color-text);
+  border-color: var(--color-text);
+  color: var(--color-bg);
+}
+
+/* ==========================================================================
+   Portfolio — production grid (damier)
+   ========================================================================== */
+.production-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 6px;
 }
-.project-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  padding: var(--space-sm);
-  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+.production-item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  z-index: 1;
 }
-.project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.2);
-}
-.project-thumb {
-  aspect-ratio: 4 / 3;
-  border-radius: calc(var(--radius) - 4px);
+.production-item.is-hidden { display: none; }
+.production-thumb {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
   background: linear-gradient(135deg, var(--color-bg-alt), var(--color-border));
-  margin-bottom: var(--space-sm);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-radius 0.4s var(--ease);
 }
-.project-card h3 { margin: 0 0 0.4rem; font-size: 1.1rem; }
-.project-card p { margin: 0; color: var(--color-text-muted); font-size: 0.95rem; }
+.production-item[data-category="environnement"] .production-thumb {
+  background: linear-gradient(135deg, #dfeee3, #a9cdb6);
+}
+.production-item[data-category="societe"] .production-thumb {
+  background: linear-gradient(135deg, #eee6df, #cdb6a1);
+}
+.production-item[data-category="international"] .production-thumb {
+  background: linear-gradient(135deg, #dfe6ee, #a1b8cd);
+}
+.production-item[data-category="politique"] .production-thumb {
+  background: linear-gradient(135deg, #eedfe4, #cda1b0);
+}
+.production-caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+  border-radius: 0 0 4px 4px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  pointer-events: none;
+}
+.production-item:hover,
+.production-item:focus-visible {
+  z-index: 5;
+}
+.production-item:hover .production-thumb,
+.production-item:focus-visible .production-thumb {
+  transform: scale(2.3);
+  border-radius: 8px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+}
+.production-item:hover .production-caption,
+.production-item:focus-visible .production-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* ==========================================================================
    About / CV

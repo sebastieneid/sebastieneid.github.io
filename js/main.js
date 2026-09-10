@@ -32,6 +32,24 @@
   });
 
   /* ---------------------------------------------------------------------
+     Portfolio filter (thématiques)
+  --------------------------------------------------------------------- */
+  const filterBar = document.querySelector(".filter-bar");
+  if (filterBar) {
+    const productionItems = document.querySelectorAll(".production-item");
+    filterBar.addEventListener("click", (e) => {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+      filterBar.querySelectorAll(".filter-btn").forEach((b) => b.classList.toggle("is-active", b === btn));
+      const filter = btn.dataset.filter;
+      productionItems.forEach((item) => {
+        const match = filter === "all" || item.dataset.category === filter;
+        item.classList.toggle("is-hidden", !match);
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------------------
      Contact form — no backend yet (site 100% local): fall back to mailto
   --------------------------------------------------------------------- */
   const contactForm = document.getElementById("contactForm");
@@ -74,7 +92,7 @@
   // Scroll-triggered reveals for everything else
   gsap.utils.toArray("[data-reveal]").forEach((el) => {
     if (el.closest(".hero")) return; // hero handled by its own timeline above
-    if (el.closest(".project-grid")) return; // project cards handled by the staggered block below
+    if (el.closest(".production-grid")) return; // production tiles handled by the staggered block below
     gsap.fromTo(
       el,
       { opacity: 0, y: 24 },
@@ -90,16 +108,16 @@
     );
   });
 
-  // Stagger project cards within the grid
+  // Stagger production tiles within the grid
   gsap.fromTo(
-    ".project-card",
+    ".production-item",
     { opacity: 0, y: 30 },
     {
       opacity: 1,
       y: 0,
-      stagger: 0.1,
+      stagger: 0.03,
       scrollTrigger: {
-        trigger: ".project-grid",
+        trigger: ".production-grid",
         start: "top 85%",
       },
     }
