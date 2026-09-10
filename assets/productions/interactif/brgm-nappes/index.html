@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nappes souterraines en France — carte animée</title>
+
+  <!-- Polices Le Monde -->
+  <style>
+    @font-face {
+      font-family: "Marr Sans"; font-weight: 400; font-display: swap;
+      src: url(https://www.lemonde.fr/bucket/resources/front/fonts/marr-sans/MarrSans-Regular-Web.2f89fff3877253bf.woff2) format("woff2");
+    }
+    @font-face {
+      font-family: "Marr Sans"; font-weight: 500; font-display: swap;
+      src: url(https://www.lemonde.fr/bucket/resources/front/fonts/marr-sans/MarrSans-Medium-Web.ac7bf37b26f16e97.woff2) format("woff2");
+    }
+    @font-face {
+      font-family: "Marr Sans Condensed"; font-display: swap;
+      src: url(https://www.lemonde.fr/bucket/resources/front/fonts/marr-sans-cond/MarrSansCondensed-Medium-Web.133dea79c01db68e.woff2) format("woff2");
+    }
+    @font-face {
+      font-family: "MarrSansCond-Regular"; font-weight: 100 900; font-display: swap;
+      src: url(https://www.lemonde.fr/bucket/resources/front/fonts/marr-sans-cond/MarrSansCondensed-Medium-Web.133dea79c01db68e.woff2) format("woff2");
+    }
+    @font-face {
+      font-family: "MarrSansCond-Semibold"; font-weight: 100 900; font-display: swap;
+      src: url(https://www.lemonde.fr/bucket/resources/front/fonts/marr-sans-cond/MarrSansCondensed-Semibold-Web.22ed62e40765ed70.woff2) format("woff2");
+    }
+    @font-face {
+      font-family: "Marr Sans Cond"; font-display: swap;
+      src: url(https://www.lemonde.fr/bucket/resources/front/fonts/marr-sans-cond/MarrSansCondensed-Medium-Web.133dea79c01db68e.woff2) format("woff2");
+    }
+    /* Habillage de la page (embarquée dans la fenêtre modale du portfolio) */
+    body {
+      margin: 0; padding: 1.25rem 1rem 1.5rem;
+      background: #fff; color: #1a1a1a;
+      font-family: "Marr Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    html[data-color-mode="dark"] body { background: #14171c; color: rgba(255, 255, 255, .85); }
+
+    /* Remplace l'infobulle du design system Le Monde (non disponible ici) */
+    .lmui-tooltip {
+      background: var(--brgm-accent, #1a1a1a);
+      color: #fff;
+      padding: 0.5rem 0.7rem;
+      border-radius: 6px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+    .lmui-tooltip__supertitle {
+      margin: 0 0 0.15rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      opacity: 0.75;
+    }
+    .lmui-tooltip__title {
+      margin: 0 0 0.35rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .lmui-tooltip__legend { display: flex; flex-direction: column; gap: 0.25rem; }
+    .lmui-tooltip__legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+    }
+    .lmui-tooltip__legend-item-bullet {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+  </style>
+  <link rel="stylesheet" href="brgm-nappes.css">
+</head>
+<body>
+
+  <!-- ============ LE GRAPHIQUE (à embarquer dans l'article) ============ -->
+  <div id="brgm-nappes" class="brgm lmui-chart">
+
+    <h2 class="brgm__titre lmui-chart__title">Evolution de l'état des nappes souterraines en France,<br>au 15 juillet 2026</h2>
+    <p class="brgm__chapo lmui-chart__description">
+      Niveau des nappes mois par mois. Déplacez la glissière pour suivre l'évolution&nbsp;; survolez un secteur pour le détail.
+    </p>
+
+    <div class="brgm__legende"></div>
+
+    <div class="brgm__carte lmui-chart__placeholder">
+      <img class="brgm__fond" alt="Fond de carte de la France"
+           data-clair-350="FOND-350-CLAIR.webp"
+           data-sombre-350="FOND-350-SOMBRE.webp"
+           data-clair-700="700-CLAIR.webp"
+           data-sombre-700="700-SOMBRE.webp"
+           src="FOND-350-CLAIR.webp">
+      <svg class="brgm__zones" viewBox="0 0 350 481.13" xmlns="http://www.w3.org/2000/svg"
+           preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+      <div class="brgm__frontieres" aria-hidden="true"></div>
+      <svg class="brgm__pictos" viewBox="0 0 350 481.13" xmlns="http://www.w3.org/2000/svg"
+           preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+      <div class="brgm__date"></div>
+      <div class="brgm__tooltip"></div>
+    </div>
+
+    <div class="brgm__controls">
+      <button class="brgm__play" aria-label="Lecture"></button>
+      <input class="brgm__slider" type="range" min="0" max="0" value="0" aria-label="Choisir la date">
+    </div>
+
+    <div class="brgm__pied lmui-chart__source">
+      <span class="brgm__source">Source&nbsp;:
+        <a href="https://app.meteeaunappes.brgm.fr/" target="_blank" rel="noopener">MétéEAU Nappes (BRGM)</a>
+      </span>
+      <span class="brgm__signature">Infographie&nbsp;<i>Le Monde</i></span>
+    </div>
+
+  </div>
+  <!-- ================================================================= -->
+
+  <script src="calage.js"></script>
+  <script src="brgm-nappes.js"></script>
+</body>
+</html>

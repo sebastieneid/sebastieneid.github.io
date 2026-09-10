@@ -32,6 +32,127 @@
   });
 
   /* ---------------------------------------------------------------------
+     Productions — données + rendu de la grille
+  --------------------------------------------------------------------- */
+  const PRODUCTIONS = [
+    {
+      title: "Incendies à Biscarrosse",
+      category: "environnement",
+      type: "image",
+      thumb: "assets/productions/environnement/feux-biscarrosse.webp",
+      src: "assets/productions/environnement/feux-biscarrosse.webp",
+    },
+    {
+      title: "Incendies en Gironde",
+      category: "environnement",
+      type: "image",
+      thumb: "assets/productions/environnement/feux-gironde.webp",
+      src: "assets/productions/environnement/feux-gironde.webp",
+    },
+    {
+      title: "Nappes souterraines en France — carte animée",
+      category: "environnement",
+      type: "iframe",
+      thumb: "assets/productions/interactif/brgm-nappes/700-SOMBRE.webp",
+      src: "assets/productions/interactif/brgm-nappes/",
+    },
+    {
+      title: "Élections sénatoriales — carte 1",
+      category: "politique",
+      type: "image",
+      thumb: "assets/productions/politique/senateurs-1.webp",
+      src: "assets/productions/politique/senateurs-1.webp",
+    },
+    {
+      title: "Élections sénatoriales — carte 2",
+      category: "politique",
+      type: "image",
+      thumb: "assets/productions/politique/senateurs-2.webp",
+      src: "assets/productions/politique/senateurs-2.webp",
+    },
+    {
+      title: "Élections sénatoriales — carte 3",
+      category: "politique",
+      type: "image",
+      thumb: "assets/productions/politique/senateurs-3.webp",
+      src: "assets/productions/politique/senateurs-3.webp",
+    },
+    {
+      title: "Globe United Airlines — nouvelles lignes 2027",
+      category: "economie",
+      type: "iframe",
+      thumb: "assets/productions/economie/globe-thumb.png",
+      src: "assets/productions/interactif/united-globe/",
+    },
+  ];
+
+  const CATEGORY_LABEL = {
+    environnement: "Environnement",
+    societe: "Société",
+    international: "International",
+    politique: "Politique",
+    economie: "Économie",
+  };
+
+  const productionGrid = document.getElementById("productionGrid");
+  if (productionGrid) {
+    productionGrid.innerHTML = PRODUCTIONS.map((p, i) => `
+      <div class="production-item" data-reveal tabindex="0" role="button"
+           data-index="${i}" data-category="${p.category}"
+           aria-label="${p.title} — ${CATEGORY_LABEL[p.category] || p.category}">
+        <span class="production-thumb" style="background-image:url('${p.thumb}')"></span>
+        ${p.type === "iframe" ? '<span class="production-badge">Interactif</span>' : ""}
+        <span class="production-caption">${p.title}</span>
+      </div>
+    `).join("");
+  }
+
+  /* ---------------------------------------------------------------------
+     Lightbox (ouverture d'une production, fond flouté)
+  --------------------------------------------------------------------- */
+  const lightbox = document.getElementById("lightbox");
+  const lightboxBody = document.getElementById("lightboxBody");
+
+  function openLightbox(production) {
+    lightboxBody.innerHTML = production.type === "iframe"
+      ? `<iframe src="${production.src}" title="${production.title}" loading="lazy"></iframe>
+         <p class="lightbox__caption">${production.title}</p>`
+      : `<img src="${production.src}" alt="${production.title}">
+         <p class="lightbox__caption">${production.title}</p>`;
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    lightboxBody.innerHTML = ""; // stoppe l'iframe / les animations en cours
+  }
+
+  if (productionGrid && lightbox) {
+    productionGrid.addEventListener("click", (e) => {
+      const item = e.target.closest(".production-item");
+      if (!item) return;
+      openLightbox(PRODUCTIONS[Number(item.dataset.index)]);
+    });
+    productionGrid.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      const item = e.target.closest(".production-item");
+      if (!item) return;
+      e.preventDefault();
+      openLightbox(PRODUCTIONS[Number(item.dataset.index)]);
+    });
+    lightbox.addEventListener("click", (e) => {
+      if (e.target.closest("[data-close]")) closeLightbox();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lightbox.classList.contains("is-open")) closeLightbox();
+    });
+  }
+
+  /* ---------------------------------------------------------------------
      Portfolio filter (thématiques)
   --------------------------------------------------------------------- */
   const filterBar = document.querySelector(".filter-bar");

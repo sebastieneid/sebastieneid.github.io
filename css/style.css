@@ -337,6 +337,100 @@ button { font: inherit; cursor: pointer; }
   opacity: 1;
   transform: translateY(0);
 }
+.production-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Lightbox (fiche production)
+   ========================================================================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s var(--ease), visibility 0s linear 0.35s;
+}
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.35s var(--ease), visibility 0s;
+}
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.lightbox__panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow: auto;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.5);
+  transform: scale(0.96);
+  transition: transform 0.35s var(--ease);
+}
+.lightbox.is-open .lightbox__panel { transform: scale(1); }
+.lightbox__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s var(--ease);
+}
+.lightbox__close:hover { background: #000; }
+.lightbox__body img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.lightbox__body iframe {
+  display: block;
+  width: 100%;
+  height: min(80vh, 720px);
+  border: 0;
+  background: #fff;
+}
+.lightbox__caption {
+  padding: 0.9rem 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text);
+  border-top: 1px solid var(--color-border);
+}
 
 /* ==========================================================================
    About / CV

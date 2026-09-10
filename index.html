@@ -53,60 +53,20 @@
         <button class="filter-btn" type="button" data-filter="societe">Société</button>
         <button class="filter-btn" type="button" data-filter="international">International</button>
         <button class="filter-btn" type="button" data-filter="politique">Politique</button>
+        <button class="filter-btn" type="button" data-filter="economie">Économie</button>
       </div>
 
-      <div class="production-grid" id="productionGrid">
-        <div class="production-item" data-reveal tabindex="0" data-category="environnement" aria-label="Titre du projet — Environnement">
-          <span class="production-thumb" aria-hidden="true"></span>
-          <span class="production-caption">[Titre du projet]</span>
-        </div>
-        <div class="production-item" data-reveal tabindex="0" data-category="societe" aria-label="Titre du projet — Société">
-          <span class="production-thumb" aria-hidden="true"></span>
-          <span class="production-caption">[Titre du projet]</span>
-        </div>
-        <div class="production-item" data-reveal tabindex="0" data-category="international" aria-label="Titre du projet — International">
-          <span class="production-thumb" aria-hidden="true"></span>
-          <span class="production-caption">[Titre du projet]</span>
-        </div>
-        <div class="production-item" data-reveal tabindex="0" data-category="politique" aria-label="Titre du projet — Politique">
-          <span class="production-thumb" aria-hidden="true"></span>
-          <span class="production-caption">[Titre du projet]</span>
-        </div>
-        <div class="production-item" data-reveal tabindex="0" data-category="environnement" aria-label="Titre du projet — Environnement">
-          <span class="production-thumb" aria-hidden="true"></span>
-          <span class="production-caption">[Titre du projet]</span>
-        </div>
-        <div class="production-item" data-reveal tabindex="0" data-category="societe" aria-label="Titre du projet — Société">
-          <span class="production-thumb" aria-hidden="true"></span>
-          <span class="production-caption">[Titre du projet]</span>
-        </div>
-        <div class="production-item" data-reveal tabindex="0" data-category="international" aria-label="Titre du projet — International">
-          <span class="production-thumb" aria-hidden="true"></span>
-          <span class="production-caption">[Titre du projet]</span>
-        </div>
-        <div class="production-item" data-reveal tabindex="0" data-category="politique" aria-label="Titre du projet — Politique">
-          <span class="production-thumb" aria-hidden="true"></span>
-          <span class="production-caption">[Titre du projet]</span>
-        </div>
-        <div class="production-item" data-reveal tabindex="0" data-category="environnement" aria-label="Titre du projet — Environnement">
-          <span class="production-thumb" aria-hidden="true"></span>
-          <span class="production-caption">[Titre du projet]</span>
-        </div>
-        <div class="production-item" data-reveal tabindex="0" data-category="societe" aria-label="Titre du projet — Société">
-          <span class="production-thumb" aria-hidden="true"></span>
-          <span class="production-caption">[Titre du projet]</span>
-        </div>
-        <div class="production-item" data-reveal tabindex="0" data-category="international" aria-label="Titre du projet — International">
-          <span class="production-thumb" aria-hidden="true"></span>
-          <span class="production-caption">[Titre du projet]</span>
-        </div>
-        <div class="production-item" data-reveal tabindex="0" data-category="politique" aria-label="Titre du projet — Politique">
-          <span class="production-thumb" aria-hidden="true"></span>
-          <span class="production-caption">[Titre du projet]</span>
-        </div>
-      </div>
+      <div class="production-grid" id="productionGrid"></div>
     </div>
   </section>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox__backdrop" data-close></div>
+    <div class="lightbox__panel" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+      <button class="lightbox__close" type="button" data-close aria-label="Fermer">&times;</button>
+      <div class="lightbox__body" id="lightboxBody"></div>
+    </div>
+  </div>
 
   <section class="section section-alt" id="apropos">
     <div class="container about-grid">

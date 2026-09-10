@@ -1,0 +1,279 @@
+/* brgm-nappes.css — styles de la carte animée des nappes */
+
+/* --- Polices Le Monde (chargées ici pour que le CSS soit autonome) --- */
+@font-face {
+  font-family: "Marr Sans"; font-weight: 400; font-display: swap;
+  src: url(https://www.lemonde.fr/bucket/resources/front/fonts/marr-sans/MarrSans-Regular-Web.2f89fff3877253bf.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Marr Sans"; font-weight: 500; font-display: swap;
+  src: url(https://www.lemonde.fr/bucket/resources/front/fonts/marr-sans/MarrSans-Medium-Web.ac7bf37b26f16e97.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Marr Sans Condensed"; font-display: swap;
+  src: url(https://www.lemonde.fr/bucket/resources/front/fonts/marr-sans-cond/MarrSansCondensed-Medium-Web.133dea79c01db68e.woff2) format("woff2");
+}
+@font-face {
+  font-family: "MarrSansCond-Regular"; font-weight: 100 900; font-display: swap;
+  src: url(https://www.lemonde.fr/bucket/resources/front/fonts/marr-sans-cond/MarrSansCondensed-Medium-Web.133dea79c01db68e.woff2) format("woff2");
+}
+@font-face {
+  font-family: "MarrSansCond-Semibold"; font-weight: 100 900; font-display: swap;
+  src: url(https://www.lemonde.fr/bucket/resources/front/fonts/marr-sans-cond/MarrSansCondensed-Semibold-Web.22ed62e40765ed70.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Marr Sans Cond"; font-display: swap;
+  src: url(https://www.lemonde.fr/bucket/resources/front/fonts/marr-sans-cond/MarrSansCondensed-Medium-Web.133dea79c01db68e.woff2) format("woff2");
+}
+
+.brgm {
+  --brgm-fg: #1a1a1a;
+  --brgm-muted: #6b7280;
+  --brgm-bg-ui: #ffffff;
+  --brgm-card-bg: #ffffff;
+  --brgm-border: #e2e4e9;
+  --brgm-track: #c9ced6;
+  --brgm-accent: #2c2d2e;
+  font-family: "Marr Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500; /* Medium par défaut */
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--brgm-fg);
+  background: var(--brgm-card-bg);
+  border: 1px solid var(--brgm-border);
+  border-radius: 6px;
+  padding: 1.1rem 1.15rem 0.85rem;
+}
+.brgm.is-dark {
+  --brgm-fg: rgba(255, 255, 255, 0.85);
+  --brgm-muted: #9aa4b2;
+  --brgm-bg-ui: #181a1e;
+  --brgm-card-bg: #181a1e;
+  --brgm-border: rgba(255, 255, 255, 0.2);
+  --brgm-track: rgba(255, 255, 255, 0.25);
+  --brgm-accent: #ffffff;
+}
+
+/* ---- Cadre : titre, chapô ---- */
+.brgm__titre {
+  font-size: 1.32rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.3rem;
+  color: var(--brgm-fg);
+}
+/* Le CSS Le Monde colore .lmui-chart__title en gris-bleu ; on impose notre couleur. */
+#brgm-nappes .brgm__titre { color: var(--brgm-fg); }
+.brgm__chapo {
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--brgm-fg);
+  margin: 0 0 0.8rem;
+}
+
+/* ---- La carte (couches empilées) ---- */
+.brgm__carte { position: relative; width: 100%; }
+.brgm__fond { display: block; width: 100%; height: auto; }
+.brgm__zones,
+.brgm__frontieres {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.brgm__frontieres { pointer-events: none; }
+.brgm__frontieres svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* Labels des villes : halo (contour) blanc en mode clair, autour du texte.
+   La police vient du SVG lui-même (Marr Sans Cond) : « Paris » en semibold,
+   les autres en Medium — plus d'override qui aplatissait tout en gras. */
+.brgm__frontieres text {
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+/* Mode sombre : inversion des couleurs -> traits + labels clairs, et le halo
+   blanc devient noir automatiquement (contour noir demandé). */
+.brgm.is-dark .brgm__frontieres { filter: invert(1); }
+
+/* Couche des pictos de tendance (au-dessus des frontières) */
+.brgm__pictos {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.brgm__zone {
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 0.15;
+  cursor: pointer;
+  transition: opacity 0.1s;
+}
+.brgm__zone:hover { stroke: #000; stroke-width: 0.6; }
+.brgm.is-dark .brgm__zone:hover { stroke: #fff; }
+
+/* ---- Date (badge en haut à droite) ---- */
+.brgm__date {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-family: "Marr Sans Condensed", "Marr Sans", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--brgm-fg);
+  text-shadow: 0 0 3px var(--brgm-bg-ui), 0 0 3px var(--brgm-bg-ui), 0 0 3px var(--brgm-bg-ui);
+  pointer-events: none;
+}
+
+/* ---- Légende ---- */
+.brgm__legende {
+  font-size: 13px; /* charte "légende" du design system Le Monde */
+  font-weight: 400;
+  color: var(--lmui-c-chart-legend);
+  margin: 0 0 0.75rem;
+}
+.brgm__leg-couleurs,
+.brgm__leg-pictos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.9rem;
+}
+.brgm__leg-item { display: inline-flex; align-items: center; gap: 0.3rem; }
+.brgm__leg-carre {
+  width: 11px; height: 11px; border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+/* barre fine entre couleurs et pictos */
+.brgm__leg-sep {
+  height: 1px;
+  background: var(--brgm-border);
+  margin: 0.6rem 0;
+}
+.brgm__leg-soustitre {
+  font-weight: 500; /* Medium ; couleur héritée de la légende */
+  margin: 0 0 0.4rem;
+}
+.brgm__leg-picto {
+  width: 15px; height: 15px;
+  flex: 0 0 auto;
+  vertical-align: middle;
+}
+
+/* ---- Contrôles (lecture + glissière) ---- */
+.brgm__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0.8rem 0.2rem 0;
+}
+.brgm__play {
+  flex: 0 0 auto;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--brgm-accent);
+  background: var(--brgm-bg-ui);
+  color: var(--brgm-accent);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+}
+.brgm__play::before {
+  content: "";
+  width: 0; height: 0;
+  border-left: 11px solid currentColor;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  margin-left: 2px;
+}
+.brgm__play.is-playing::before {
+  border: none;
+  width: 9px; height: 10px;
+  margin-left: 0;
+  border-left: 3px solid currentColor;
+  border-right: 3px solid currentColor;
+}
+.brgm__play:hover { background: var(--brgm-accent); color: var(--brgm-bg-ui); }
+
+.brgm__slider {
+  flex: 1 1 auto;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--brgm-track);
+  cursor: pointer;
+}
+.brgm__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--brgm-accent);
+  border: 3px solid var(--brgm-bg-ui);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+}
+.brgm__slider::-moz-range-thumb {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--brgm-accent);
+  border: 3px solid var(--brgm-bg-ui);
+}
+
+/* ---- Tooltip ---- */
+/* Le wrapper ne fait que positionner ; l'apparence vient de .lmui-tooltip (design system). */
+.brgm__tooltip {
+  position: absolute;
+  z-index: 5;
+  transform: translate(-50%, calc(-100% - 14px));
+  width: 230px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.08s;
+}
+.brgm__tooltip.is-visible { opacity: 1; }
+/* le surtitre (date) : on garde la casse telle quelle, le composant met en majuscules */
+.brgm__tooltip .lmui-tooltip__supertitle { text-transform: uppercase; }
+/* picto de tendance dans le tooltip (réutilise le style de la légende) */
+.brgm__tooltip .brgm__leg-picto { width: 16px; height: 16px; }
+/* colonne d'icônes de largeur fixe : picto/pastille centrés, libellés alignés */
+.brgm__tt-icon {
+  flex: 0 0 18px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ---- Pied : sources + signature ---- */
+.brgm__pied {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.2rem 1rem;
+  margin: 0.75rem 0 0;
+  font-size: 12px;
+  color: var(--brgm-muted);
+}
+.brgm__source a { color: inherit; }
+
+/* Tailles imposées (priment sur le design system Le Monde) */
+#brgm-nappes .brgm__legende { font-size: 13px; }
+#brgm-nappes .brgm__pied,
+#brgm-nappes .brgm__source,
+#brgm-nappes .brgm__signature { font-size: 12px; }
+.brgm__signature { font-weight: 600; white-space: nowrap; }
+.brgm__signature i { font-style: italic; }
+
+/* ---- Mobile ---- */
+@media (max-width: 500px) {
+  .brgm__date { font-size: 16px; }
+}

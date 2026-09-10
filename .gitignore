@@ -1,3 +1,7 @@
 .DS_Store
 Thumbs.db
 *.log
+
+# Dossier de travail source des productions (scripts, fichiers .ai, archives...)
+# — pas destiné à être publié. Les fichiers finis sont copiés dans assets/productions/.
+/PRODUCTIONS/
