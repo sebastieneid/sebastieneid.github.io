@@ -293,20 +293,27 @@ button { font: inherit; cursor: pointer; }
   width: 100%;
   height: 100%;
   border-radius: 4px;
-  background: linear-gradient(135deg, var(--color-bg-alt), var(--color-border));
+  background-image: linear-gradient(135deg, var(--color-bg-alt), var(--color-border));
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--color-bg-alt);
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-radius 0.4s var(--ease);
 }
 .production-item[data-category="environnement"] .production-thumb {
-  background: linear-gradient(135deg, #dfeee3, #a9cdb6);
+  background-color: #dfeee3;
 }
 .production-item[data-category="societe"] .production-thumb {
-  background: linear-gradient(135deg, #eee6df, #cdb6a1);
+  background-color: #eee6df;
 }
 .production-item[data-category="international"] .production-thumb {
-  background: linear-gradient(135deg, #dfe6ee, #a1b8cd);
+  background-color: #dfe6ee;
 }
 .production-item[data-category="politique"] .production-thumb {
-  background: linear-gradient(135deg, #eedfe4, #cda1b0);
+  background-color: #eedfe4;
+}
+.production-item[data-category="economie"] .production-thumb {
+  background-color: #dfe9ee;
 }
 .production-caption {
   position: absolute;
@@ -382,8 +389,7 @@ button { font: inherit; cursor: pointer; }
 .lightbox__panel {
   position: relative;
   z-index: 1;
-  width: 100%;
-  max-width: 900px;
+  max-width: min(1100px, 92vw);
   max-height: 90vh;
   overflow: auto;
   background: var(--color-surface);
@@ -414,13 +420,18 @@ button { font: inherit; cursor: pointer; }
 .lightbox__close:hover { background: #000; }
 .lightbox__body img {
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
+  max-width: min(1100px, 92vw);
+  max-height: calc(90vh - 3.5rem);
+  margin: 0 auto;
+  object-fit: contain;
 }
 .lightbox__body iframe {
   display: block;
-  width: 100%;
+  width: min(900px, 88vw);
   height: min(80vh, 720px);
+  max-width: 100%;
   border: 0;
   background: #fff;
 }
