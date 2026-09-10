@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Ton Nom] — Cartographe &amp; designer de données</title>
+<meta name="description" content="Portfolio de [Ton Nom], cartographe freelance — cartes, visualisation de données et projets sur mesure.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="#top" class="logo">[Ton Nom]</a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="primary-nav" id="primaryNav">
+      <a href="#portfolio">Portfolio</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="accueil">
+    <div class="container hero-inner">
+      <p class="hero-eyebrow" data-reveal>Cartographe &amp; designer de données freelance</p>
+      <h1 class="hero-title">
+        <span data-reveal>Je transforme la donnée</span>
+        <span data-reveal>en cartes qui racontent</span>
+        <span data-reveal>une histoire.</span>
+      </h1>
+      <p class="hero-lead" data-reveal>
+        [Une courte phrase de présentation — ce que tu fais, pour qui, ce qui te distingue. À remplacer.]
+      </p>
+      <div class="hero-actions" data-reveal>
+        <a href="#portfolio" class="btn btn-primary">Voir mes projets</a>
+        <a href="#contact" class="btn btn-ghost">Me contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="portfolio">
+    <div class="container">
+      <p class="section-eyebrow" data-reveal>Portfolio</p>
+      <h2 class="section-title" data-reveal>Projets récents</h2>
+
+      <div class="project-grid">
+        <article class="project-card" data-reveal>
+          <div class="project-thumb" aria-hidden="true"></div>
+          <h3>[Titre du projet 1]</h3>
+          <p>[Courte description : contexte, outils, résultat. À remplacer.]</p>
+        </article>
+        <article class="project-card" data-reveal>
+          <div class="project-thumb" aria-hidden="true"></div>
+          <h3>[Titre du projet 2]</h3>
+          <p>[Courte description : contexte, outils, résultat. À remplacer.]</p>
+        </article>
+        <article class="project-card" data-reveal>
+          <div class="project-thumb" aria-hidden="true"></div>
+          <h3>[Titre du projet 3]</h3>
+          <p>[Courte description : contexte, outils, résultat. À remplacer.]</p>
+        </article>
+        <article class="project-card" data-reveal>
+          <div class="project-thumb" aria-hidden="true"></div>
+          <h3>[Titre du projet 4]</h3>
+          <p>[Courte description : contexte, outils, résultat. À remplacer.]</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="apropos">
+    <div class="container about-grid">
+      <div data-reveal>
+        <p class="section-eyebrow">À propos</p>
+        <h2 class="section-title">Qui je suis</h2>
+        <p class="about-text">
+          [Bio courte : ton parcours, ta spécialité en cartographie, ta manière de travailler avec
+          tes clients. Deux à trois phrases suffisent pour l'instant. À remplacer.]
+        </p>
+        <a href="assets/cv.pdf" class="btn btn-outline" download>Télécharger mon CV</a>
+      </div>
+
+      <div class="about-facts" data-reveal>
+        <div class="fact">
+          <span class="fact-number">[X]</span>
+          <span class="fact-label">années d'expérience</span>
+        </div>
+        <div class="fact">
+          <span class="fact-number">[X]</span>
+          <span class="fact-label">projets réalisés</span>
+        </div>
+        <div class="fact">
+          <span class="fact-number">[X]</span>
+          <span class="fact-label">outils maîtrisés</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container contact-grid">
+      <div data-reveal>
+        <p class="section-eyebrow">Contact</p>
+        <h2 class="section-title">Discutons de votre projet</h2>
+        <p class="about-text">
+          Que ce soit pour une carte sur mesure, une réponse à appel d'offres ou simplement échanger,
+          n'hésitez pas à me contacter.
+        </p>
+        <ul class="contact-list">
+          <li><a href="mailto:contact@tondomaine.fr">contact@tondomaine.fr</a></li>
+          <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+
+      <form class="contact-form" id="contactForm" data-reveal>
+        <label for="name">Nom</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+        <p class="form-note">
+          Formulaire non branché pour l'instant (site 100% local) — il ouvrira ton client mail le temps
+          qu'on choisisse un hébergement.
+        </p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> [Ton Nom]</span>
+    <a href="#top">Haut de page ↑</a>
+  </div>
+</footer>
+
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
