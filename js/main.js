@@ -94,6 +94,10 @@
     economie: "Économie",
   };
 
+  // Contexte affiché au survol des vignettes : toutes les productions actuelles
+  // ont été réalisées durant le stage au service infographie du Monde.
+  const PRODUCTION_CONTEXT = "Le Monde — Service Infographie";
+
   const productionGrid = document.getElementById("productionGrid");
   if (productionGrid) {
     productionGrid.innerHTML = PRODUCTIONS.map((p, i) => `
@@ -102,7 +106,7 @@
            aria-label="${p.title} — ${CATEGORY_LABEL[p.category] || p.category}">
         <span class="production-thumb" style="background-image:url('${p.thumb}')"></span>
         ${p.type === "iframe" ? '<span class="production-badge">Interactif</span>' : ""}
-        <span class="production-caption">${p.title}</span>
+        <span class="production-caption">${PRODUCTION_CONTEXT}</span>
       </div>
     `).join("");
   }
@@ -149,6 +153,24 @@
     });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && lightbox.classList.contains("is-open")) closeLightbox();
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     Aperçu du CV — même lightbox que les productions
+  --------------------------------------------------------------------- */
+  const cvPreview = document.getElementById("cvPreview");
+  if (cvPreview && lightbox) {
+    const openCv = () => openLightbox({
+      type: "image",
+      src: "assets/cv-preview.png",
+      title: "CV — Sébastien EID",
+    });
+    cvPreview.addEventListener("click", openCv);
+    cvPreview.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault();
+      openCv();
     });
   }
 
@@ -206,9 +228,7 @@
   const heroTl = gsap.timeline({ delay: 0.2 });
   heroTl
     .fromTo(".hero-eyebrow", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7 }, 0)
-    .to(heroTitleSpans, { yPercent: 0, opacity: 1, stagger: 0.12, duration: 1 }, 0.1)
-    .fromTo(".hero-lead", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.8 }, 0.5)
-    .fromTo(".hero-actions", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.8 }, 0.65);
+    .to(heroTitleSpans, { yPercent: 0, opacity: 1, stagger: 0.12, duration: 1 }, 0.1);
 
   // Scroll-triggered reveals for everything else
   gsap.utils.toArray("[data-reveal]").forEach((el) => {
