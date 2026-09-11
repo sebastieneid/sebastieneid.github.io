@@ -308,9 +308,9 @@
   }
 
   // ---------- Mode sombre + choix du fond ----------
+  // Forcé en clair pour l'intégration portfolio, quel que soit le thème système du visiteur.
   function estSombre() {
-    if (document.documentElement.getAttribute("data-color-mode") === "dark") return true;
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return false;
   }
   function appliquerFond() {
     const sombre = estSombre();

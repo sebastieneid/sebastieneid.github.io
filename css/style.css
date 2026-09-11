@@ -298,7 +298,7 @@ button { font: inherit; cursor: pointer; }
   background-position: center;
   background-repeat: no-repeat;
   background-color: var(--color-bg-alt);
-  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-radius 0.4s var(--ease);
+  transition: filter 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 .production-item[data-category="environnement"] .production-thumb {
   background-color: #dfeee3;
@@ -329,15 +329,10 @@ button { font: inherit; cursor: pointer; }
   transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
   pointer-events: none;
 }
-.production-item:hover,
-.production-item:focus-visible {
-  z-index: 5;
-}
 .production-item:hover .production-thumb,
 .production-item:focus-visible .production-thumb {
-  transform: scale(2.3);
-  border-radius: 8px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  filter: brightness(1.12);
+  box-shadow: 0 0 0 2px var(--color-text);
 }
 .production-item:hover .production-caption,
 .production-item:focus-visible .production-caption {
