@@ -318,21 +318,25 @@ button { font: inherit; cursor: pointer; }
 .production-caption {
   position: absolute;
   inset: auto 0 0 0;
-  padding: 0.5rem 0.6rem;
-  font-size: 0.72rem;
-  font-weight: 500;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.25;
   color: #fff;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+  background: rgba(0, 0, 0, 0.7);
   border-radius: 0 0 4px 4px;
   opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  transform: translateY(4px);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
   pointer-events: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .production-item:hover .production-thumb,
 .production-item:focus-visible .production-thumb {
-  filter: brightness(1.12);
-  box-shadow: 0 0 0 2px var(--color-text);
+  filter: brightness(1.15);
 }
 .production-item:hover .production-caption,
 .production-item:focus-visible .production-caption {
