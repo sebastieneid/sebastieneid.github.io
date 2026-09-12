@@ -308,33 +308,9 @@ button { font: inherit; cursor: pointer; }
 .production-item[data-category="economie"] .production-thumb {
   background-color: #dfe9ee;
 }
-.production-caption {
-  position: absolute;
-  inset: auto 0 0 0;
-  padding: 0.4rem 0.5rem;
-  font-size: 0.68rem;
-  font-weight: 600;
-  line-height: 1.25;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 0 0 4px 4px;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
-  pointer-events: none;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
 .production-item:hover .production-thumb,
 .production-item:focus-visible .production-thumb {
   filter: brightness(1.15);
-}
-.production-item:hover .production-caption,
-.production-item:focus-visible .production-caption {
-  opacity: 1;
-  transform: translateY(0);
 }
 .production-badge {
   position: absolute;

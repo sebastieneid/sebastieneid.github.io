@@ -150,10 +150,6 @@
     economie: "Économie",
   };
 
-  // Contexte affiché au survol des vignettes : toutes les productions actuelles
-  // ont été réalisées durant le stage au service infographie du Monde.
-  const PRODUCTION_CONTEXT = "Le Monde — Service Infographie";
-
   const productionGrid = document.getElementById("productionGrid");
   if (productionGrid) {
     productionGrid.innerHTML = PRODUCTIONS.map((p, i) => `
@@ -163,7 +159,6 @@
         <span class="production-thumb" style="background-image:url('${p.thumb}')"></span>
         ${p.type === "iframe" ? '<span class="production-badge">Interactif</span>' : ""}
         ${p.type === "gallery" ? `<span class="production-badge">${p.srcs.length} volets</span>` : ""}
-        <span class="production-caption">${PRODUCTION_CONTEXT}</span>
       </div>
     `).join("");
   }
