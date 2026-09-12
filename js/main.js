@@ -96,6 +96,23 @@
       thumb: "assets/productions/economie/globe-thumb.png",
       src: "assets/productions/interactif/united-globe/",
     },
+    {
+      title: "Une mobilisation historique aux élections législatives hongroises",
+      category: "international",
+      type: "image",
+      thumb: "assets/productions/international/elections-hongrie.webp",
+      src: "assets/productions/international/elections-hongrie.webp",
+    },
+    {
+      title: "Les pays nordiques repensent leur défense — l'héritage des bunkers",
+      category: "international",
+      type: "gallery",
+      thumb: "assets/productions/international/bunkers-scandinaves-1.webp",
+      srcs: [
+        "assets/productions/international/bunkers-scandinaves-1.webp",
+        "assets/productions/international/bunkers-scandinaves-2.webp",
+      ],
+    },
   ];
 
   const CATEGORY_LABEL = {
@@ -118,6 +135,7 @@
            aria-label="${p.title} — ${CATEGORY_LABEL[p.category] || p.category}">
         <span class="production-thumb" style="background-image:url('${p.thumb}')"></span>
         ${p.type === "iframe" ? '<span class="production-badge">Interactif</span>' : ""}
+        ${p.type === "gallery" ? `<span class="production-badge">${p.srcs.length} volets</span>` : ""}
         <span class="production-caption">${PRODUCTION_CONTEXT}</span>
       </div>
     `).join("");
@@ -129,12 +147,45 @@
   const lightbox = document.getElementById("lightbox");
   const lightboxBody = document.getElementById("lightboxBody");
 
+  let galleryProduction = null;
+  let galleryIndex = 0;
+
+  function renderGalleryFrame() {
+    const total = galleryProduction.srcs.length;
+    lightboxBody.innerHTML = `
+      <div class="lightbox__gallery">
+        <button class="lightbox__nav lightbox__nav--prev" type="button" data-gallery-prev
+                aria-label="Volet précédent" ${galleryIndex === 0 ? "disabled" : ""}>&lsaquo;</button>
+        <img src="${galleryProduction.srcs[galleryIndex]}" alt="${galleryProduction.title} — volet ${galleryIndex + 1}">
+        <button class="lightbox__nav lightbox__nav--next" type="button" data-gallery-next
+                aria-label="Volet suivant" ${galleryIndex === total - 1 ? "disabled" : ""}>&rsaquo;</button>
+      </div>
+      <p class="lightbox__caption">${galleryProduction.title} — volet ${galleryIndex + 1}/${total}</p>
+    `;
+  }
+
+  function showGalleryIndex(delta) {
+    if (!galleryProduction) return;
+    const total = galleryProduction.srcs.length;
+    const next = galleryIndex + delta;
+    if (next < 0 || next >= total) return;
+    galleryIndex = next;
+    renderGalleryFrame();
+  }
+
   function openLightbox(production) {
-    lightboxBody.innerHTML = production.type === "iframe"
-      ? `<iframe src="${production.src}" title="${production.title}" loading="lazy"></iframe>
-         <p class="lightbox__caption">${production.title}</p>`
-      : `<img src="${production.src}" alt="${production.title}">
+    galleryProduction = production.type === "gallery" ? production : null;
+    galleryIndex = 0;
+
+    if (production.type === "gallery") {
+      renderGalleryFrame();
+    } else if (production.type === "iframe") {
+      lightboxBody.innerHTML = `<iframe src="${production.src}" title="${production.title}" loading="lazy"></iframe>
          <p class="lightbox__caption">${production.title}</p>`;
+    } else {
+      lightboxBody.innerHTML = `<img src="${production.src}" alt="${production.title}">
+         <p class="lightbox__caption">${production.title}</p>`;
+    }
     lightbox.classList.add("is-open");
     lightbox.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -145,6 +196,7 @@
     lightbox.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
     lightboxBody.innerHTML = ""; // stoppe l'iframe / les animations en cours
+    galleryProduction = null;
   }
 
   if (productionGrid && lightbox) {
@@ -161,10 +213,15 @@
       openLightbox(PRODUCTIONS[Number(item.dataset.index)]);
     });
     lightbox.addEventListener("click", (e) => {
-      if (e.target.closest("[data-close]")) closeLightbox();
+      if (e.target.closest("[data-close]")) { closeLightbox(); return; }
+      if (e.target.closest("[data-gallery-prev]")) { showGalleryIndex(-1); return; }
+      if (e.target.closest("[data-gallery-next]")) { showGalleryIndex(1); return; }
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && lightbox.classList.contains("is-open")) closeLightbox();
+      if (!lightbox.classList.contains("is-open")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showGalleryIndex(-1);
+      if (e.key === "ArrowRight") showGalleryIndex(1);
     });
   }
 
