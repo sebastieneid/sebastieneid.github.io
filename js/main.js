@@ -203,7 +203,6 @@
         <button class="lightbox__nav lightbox__nav--next" type="button" data-gallery-next
                 aria-label="Volet suivant" ${galleryIndex === total - 1 ? "disabled" : ""}>&rsaquo;</button>
       </div>
-      <p class="lightbox__caption">${galleryProduction.title} — volet ${galleryIndex + 1}/${total}</p>
     `;
   }
 
@@ -223,11 +222,9 @@
     if (production.type === "gallery") {
       renderGalleryFrame();
     } else if (production.type === "iframe") {
-      lightboxBody.innerHTML = `<iframe src="${production.src}" title="${production.title}" loading="lazy"></iframe>
-         <p class="lightbox__caption">${production.title}</p>`;
+      lightboxBody.innerHTML = `<iframe src="${production.src}" title="${production.title}" loading="lazy"></iframe>`;
     } else {
-      lightboxBody.innerHTML = `<img src="${production.src}" alt="${production.title}">
-         <p class="lightbox__caption">${production.title}</p>`;
+      lightboxBody.innerHTML = `<img src="${production.src}" alt="${production.title}">`;
     }
     lightbox.classList.add("is-open");
     lightbox.setAttribute("aria-hidden", "false");

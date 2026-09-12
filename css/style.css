@@ -391,7 +391,7 @@ button { font: inherit; cursor: pointer; }
   width: auto;
   height: auto;
   max-width: min(1100px, 92vw);
-  max-height: calc(90vh - 3.5rem);
+  max-height: 90vh;
   margin: 0 auto;
   object-fit: contain;
 }
@@ -427,13 +427,6 @@ button { font: inherit; cursor: pointer; }
 .lightbox__nav:disabled { opacity: 0; pointer-events: none; }
 .lightbox__nav--prev { left: 12px; }
 .lightbox__nav--next { right: 12px; }
-.lightbox__caption {
-  padding: 0.9rem 1.1rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--color-text);
-  border-top: 1px solid var(--color-border);
-}
 
 /* ==========================================================================
    About / CV
