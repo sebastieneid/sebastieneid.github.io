@@ -65,7 +65,7 @@
       title: "Nappes souterraines en France — carte animée",
       category: "environnement",
       type: "iframe",
-      thumb: "assets/productions/interactif/brgm-nappes/700-SOMBRE.webp",
+      thumb: "assets/productions/interactif/brgm-nappes/700-CLAIR.webp",
       src: "assets/productions/interactif/brgm-nappes/",
     },
     {
