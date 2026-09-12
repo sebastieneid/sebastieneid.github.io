@@ -69,25 +69,22 @@
       src: "assets/productions/interactif/brgm-nappes/",
     },
     {
-      title: "Élections sénatoriales — carte 1",
+      title: "Élections sénatoriales",
       category: "politique",
-      type: "image",
+      type: "gallery",
       thumb: "assets/productions/politique/senateurs-1.webp",
-      src: "assets/productions/politique/senateurs-1.webp",
+      srcs: [
+        "assets/productions/politique/senateurs-1.webp",
+        "assets/productions/politique/senateurs-2.webp",
+        "assets/productions/politique/senateurs-3.webp",
+      ],
     },
     {
-      title: "Élections sénatoriales — carte 2",
+      title: "Une mobilisation historique aux élections législatives hongroises",
       category: "politique",
       type: "image",
-      thumb: "assets/productions/politique/senateurs-2.webp",
-      src: "assets/productions/politique/senateurs-2.webp",
-    },
-    {
-      title: "Élections sénatoriales — carte 3",
-      category: "politique",
-      type: "image",
-      thumb: "assets/productions/politique/senateurs-3.webp",
-      src: "assets/productions/politique/senateurs-3.webp",
+      thumb: "assets/productions/politique/elections-hongrie.webp",
+      src: "assets/productions/politique/elections-hongrie.webp",
     },
     {
       title: "Globe United Airlines — nouvelles lignes 2027",
@@ -97,11 +94,23 @@
       src: "assets/productions/interactif/united-globe/",
     },
     {
-      title: "Une mobilisation historique aux élections législatives hongroises",
-      category: "international",
+      title: "Égypte — gisements et infrastructures gazières et pétrolières",
+      category: "economie",
       type: "image",
-      thumb: "assets/productions/international/elections-hongrie.webp",
-      src: "assets/productions/international/elections-hongrie.webp",
+      thumb: "assets/productions/economie/egypte.webp",
+      src: "assets/productions/economie/egypte.webp",
+    },
+    {
+      title: "Consommation d'énergie en France",
+      category: "economie",
+      type: "gallery",
+      thumb: "assets/productions/economie/energie-france-1.webp",
+      srcs: [
+        "assets/productions/economie/energie-france-1.webp",
+        "assets/productions/economie/energie-france-2.webp",
+        "assets/productions/economie/energie-france-3.webp",
+        "assets/productions/economie/energie-france-4.webp",
+      ],
     },
     {
       title: "Les pays nordiques repensent leur défense — l'héritage des bunkers",
@@ -112,6 +121,24 @@
         "assets/productions/international/bunkers-scandinaves-1.webp",
         "assets/productions/international/bunkers-scandinaves-2.webp",
       ],
+    },
+    {
+      title: "Démographie scolaire — 1,7 million d'élèves en moins d'ici 2035",
+      category: "societe",
+      type: "gallery",
+      thumb: "assets/productions/societe/demographie-scolaire-1.webp",
+      srcs: [
+        "assets/productions/societe/demographie-scolaire-1.webp",
+        "assets/productions/societe/demographie-scolaire-2.webp",
+        "assets/productions/societe/demographie-scolaire-3.webp",
+      ],
+    },
+    {
+      title: "Présence de PFAS dans les sites de baignade",
+      category: "environnement",
+      type: "image",
+      thumb: "assets/productions/environnement/pfas.webp",
+      src: "assets/productions/environnement/pfas.webp",
     },
   ];
 
