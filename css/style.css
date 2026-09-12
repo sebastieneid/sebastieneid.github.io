@@ -448,7 +448,7 @@ button { font: inherit; cursor: pointer; }
 .cv-card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--space-sm);
 }
 .cv-thumb {

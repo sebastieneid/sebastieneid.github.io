@@ -14,6 +14,18 @@
   window.addEventListener("scroll", onScroll, { passive: true });
 
   /* ---------------------------------------------------------------------
+     Liens "#top" — le header étant en position: sticky, son offsetTop
+     dérive avec le défilement et casse l'ancre native. On remonte donc
+     la page nous-mêmes.
+  --------------------------------------------------------------------- */
+  document.querySelectorAll('a[href="#top"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+    });
+  });
+
+  /* ---------------------------------------------------------------------
      Mobile nav toggle
   --------------------------------------------------------------------- */
   const navToggle = document.getElementById("navToggle");
