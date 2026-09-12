@@ -140,6 +140,27 @@
       thumb: "assets/productions/environnement/pfas.webp",
       src: "assets/productions/environnement/pfas.webp",
     },
+    {
+      title: "Haut-Karabagh — cent ans de guerre dans le Caucase",
+      category: "international",
+      type: "image",
+      thumb: "assets/productions/international/haut-karabagh.png",
+      src: "assets/productions/international/haut-karabagh.png",
+    },
+    {
+      title: "Bagdad — lignes de fracture confessionnelles",
+      category: "international",
+      type: "image",
+      thumb: "assets/productions/international/baghdad.png",
+      src: "assets/productions/international/baghdad.png",
+    },
+    {
+      title: "Survol des pays sous restriction aérienne",
+      category: "international",
+      type: "image",
+      thumb: "assets/productions/international/airborders.png",
+      src: "assets/productions/international/airborders.png",
+    },
   ];
 
   const CATEGORY_LABEL = {
