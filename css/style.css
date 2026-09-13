@@ -490,7 +490,6 @@ button { font: inherit; cursor: pointer; }
 }
 .contact-form input:focus, .contact-form textarea:focus { border-color: var(--color-accent); }
 .contact-form .btn { align-self: flex-start; margin-top: var(--space-sm); border: none; }
-.form-note { font-size: 0.8rem; color: var(--color-text-muted); margin-top: var(--space-xs); }
 
 /* ==========================================================================
    Footer

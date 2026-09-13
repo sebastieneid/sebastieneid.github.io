@@ -92,12 +92,18 @@
           n'hésitez pas à me contacter.
         </p>
         <ul class="contact-list">
-          <li><a href="mailto:contact@tondomaine.fr">contact@tondomaine.fr</a></li>
+          <li><a href="mailto:sebastieneid.carto@gmail.com">sebastieneid.carto@gmail.com</a></li>
           <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
       </div>
 
-      <form class="contact-form" id="contactForm" data-reveal>
+      <form class="contact-form" id="contactForm" data-reveal
+            action="https://formsubmit.co/sebastieneid.carto@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Nouveau message — portfolio">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://sebastieneid.github.io/#contact">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
         <label for="name">Nom</label>
         <input type="text" id="name" name="name" required>
 
@@ -108,10 +114,6 @@
         <textarea id="message" name="message" rows="5" required></textarea>
 
         <button type="submit" class="btn btn-primary">Envoyer</button>
-        <p class="form-note">
-          Formulaire non branché pour l'instant (site 100% local) — il ouvrira ton client mail le temps
-          qu'on choisisse un hébergement.
-        </p>
       </form>
     </div>
   </section>

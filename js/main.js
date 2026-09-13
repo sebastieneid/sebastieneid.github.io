@@ -302,20 +302,6 @@
   }
 
   /* ---------------------------------------------------------------------
-     Contact form — no backend yet (site 100% local): fall back to mailto
-  --------------------------------------------------------------------- */
-  const contactForm = document.getElementById("contactForm");
-  contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const name = contactForm.name.value.trim();
-    const email = contactForm.email.value.trim();
-    const message = contactForm.message.value.trim();
-    const subject = encodeURIComponent(`Contact site — ${name}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-    window.location.href = `mailto:contact@tondomaine.fr?subject=${subject}&body=${body}`;
-  });
-
-  /* ---------------------------------------------------------------------
      GSAP animations
   --------------------------------------------------------------------- */
   if (typeof gsap === "undefined") return;
