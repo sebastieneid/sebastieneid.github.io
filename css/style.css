@@ -465,10 +465,6 @@ button { font: inherit; cursor: pointer; }
 /* ==========================================================================
    Contact
    ========================================================================== */
-.contact-list { margin-top: var(--space-sm); }
-.contact-list a { font-weight: 500; color: var(--color-accent); }
-.contact-list li + li { margin-top: 0.5rem; }
-
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -495,6 +491,17 @@ button { font: inherit; cursor: pointer; }
    Footer
    ========================================================================== */
 .site-footer { border-top: 1px solid var(--color-border); padding-block: var(--space-md); }
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-sm);
+}
+.footer-contact a { font-weight: 500; color: var(--color-accent); }
 .footer-inner {
   display: flex;
   justify-content: space-between;
