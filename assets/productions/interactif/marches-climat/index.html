@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marches pour le climat du 26 septembre 2026 — carte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vend+Sans:wght@400;500;600;700&family=Merriweather:wght@700&display=swap">
+  <style>
+    /* Habillage de la page d'aperçu (l'article fournit le sien) */
+    body { margin: 0; padding: 2rem 16px 4rem; background: #F7F7F7; color: #1a1a1a; }
+    @media (prefers-color-scheme: dark) {
+      html:not([data-color-mode="light"]) body { background: #0f1416; color: rgba(255,255,255,.87); }
+    }
+    html[data-color-mode="dark"] body { background: #0f1416; color: rgba(255,255,255,.87); }
+
+    /* Méthodologie déroulante (sous la carte) */
+    .methodo {
+      max-width: 700px; margin: 1rem auto 0; box-sizing: border-box;
+      font-family: "Vend Sans", system-ui, sans-serif; color: #1a1a1a;
+      background: #fff; border: 1px solid #e3e6e5; border-radius: 8px;
+    }
+    .methodo summary {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .85rem 1.15rem; cursor: pointer; list-style: none;
+      font-weight: 700; font-size: 1rem; color: #004352;
+    }
+    .methodo summary::-webkit-details-marker { display: none; }
+    .methodo summary::before {
+      content: ""; flex: 0 0 auto; width: 8px; height: 8px;
+      border-right: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor;
+      transform: rotate(-45deg); transition: transform .15s;
+    }
+    .methodo[open] summary::before { transform: rotate(45deg); }
+    .methodo summary:hover { background: #EEFBF5; border-radius: 8px; }
+    .methodo__corps { padding: 0 1.15rem 1rem; font-size: .93rem; line-height: 1.5; }
+    .methodo h3 { margin: 1rem 0 .3rem; font-size: .95rem; color: #004352; }
+    .methodo h3:first-child { margin-top: .2rem; }
+    .methodo p, .methodo ul { margin: 0 0 .4rem; }
+    .methodo ul { padding-left: 1.1rem; }
+    .methodo li { margin: 0 0 .3rem; }
+    .methodo a { color: #004352; }
+    @media (prefers-color-scheme: dark) {
+      html:not([data-color-mode="light"]) .methodo { background: #161d20; color: rgba(255,255,255,.87); border-color: rgba(255,255,255,.16); }
+      html:not([data-color-mode="light"]) .methodo summary,
+      html:not([data-color-mode="light"]) .methodo h3,
+      html:not([data-color-mode="light"]) .methodo a { color: #7DE2B4; }
+    }
+
+    /* Parties 2 et 3 de l'exercice (réponses rédigées) */
+    .partie {
+      max-width: 700px; margin: 3rem auto 0; box-sizing: border-box;
+      font-family: "Vend Sans", system-ui, sans-serif; color: #1a1a1a;
+      background: #fff; border: 1px solid #e3e6e5; border-radius: 8px;
+      padding: 1.1rem 1.15rem 1rem;
+    }
+    .partie__surtitre { margin: 0 0 .35rem; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: #004352; }
+    .partie h2 { margin: 0 0 .5rem; font-family: Merriweather, Georgia, serif; font-size: 1.3rem; line-height: 1.3; text-wrap: balance; }
+    .partie p { margin: 0 0 .6rem; font-size: .93rem; line-height: 1.5; }
+    .partie h3 { margin: 1.1rem 0 .3rem; font-size: .95rem; color: #004352; }
+    .partie a { color: #004352; }
+    .contexte-exercice {
+      max-width: 700px; margin: 0 auto 1rem; font-family: "Vend Sans", system-ui, sans-serif;
+      font-size: .85rem; color: #616161;
+    }
+    .note-ia {
+      max-width: 700px; margin: 2rem auto 0; box-sizing: border-box;
+      padding: .7rem 1rem; border-left: 3px solid #7DE2B4; background: #fff; border-radius: 0 6px 6px 0;
+      font-family: "Vend Sans", system-ui, sans-serif; font-size: .88rem; line-height: 1.5; color: #3d4a4d;
+    }
+    .note-ia b { color: #004352; }
+    .partie__cle {
+      margin: .2rem 0 .8rem !important; padding: .55rem .8rem; border-left: 3px solid #004352;
+      background: #EEFBF5; font-weight: 600; color: #004352;
+    }
+    .partie + .methodo { margin-top: 1rem; }
+    @media (prefers-color-scheme: dark) {
+      html:not([data-color-mode="light"]) .partie { background: #161d20; color: rgba(255,255,255,.87); border-color: rgba(255,255,255,.16); }
+      html:not([data-color-mode="light"]) .partie__surtitre,
+      html:not([data-color-mode="light"]) .partie h3,
+      html:not([data-color-mode="light"]) .partie a { color: #7DE2B4; }
+      html:not([data-color-mode="light"]) .note-ia { background: #161d20; color: rgba(255,255,255,.75); }
+      html:not([data-color-mode="light"]) .note-ia b { color: #7DE2B4; }
+      html:not([data-color-mode="light"]) .partie__cle { background: rgba(125,226,180,.1); color: #7DE2B4; border-color: #7DE2B4; }
+    }
+  </style>
+  <link rel="stylesheet" href="marches-climat.css">
+</head>
+<body>
+
+  <p class="contexte-exercice">Exercice technique réalisé pour une candidature au poste de journaliste carto/data chez <i>Vert</i>, septembre 2026.</p>
+
+  <!-- ============ LE GRAPHIQUE (à embarquer dans l'article) ============ -->
+  <div id="marches-climat" class="mc">
+
+    <p class="mc__surtitre">Mobilisation · 26 septembre 2026</p>
+    <h2 class="mc__titre">Marches pour le climat&nbsp;: plus de 130&nbsp;000 participants revendiqués</h2>
+    <p class="mc__chapo">
+      Chaque cercle est proportionnel au nombre de participants déclaré par les organisateurs locaux.
+      Survolez ou touchez une mobilisation pour le détail, ou cherchez une ville.
+    </p>
+
+    <div class="mc__chiffres"></div>
+
+    <div class="mc__outils">
+      <div class="mc__legende" aria-hidden="true"></div>
+      <label class="mc__recherche">
+        <span class="mc__sr">Chercher une ville</span>
+        <input class="mc__input" type="search" list="mc-villes" placeholder="Chercher une ville…" autocomplete="off">
+        <datalist id="mc-villes"></datalist>
+      </label>
+    </div>
+
+    <div class="mc__carte">
+      <img class="mc__fond" alt="Carte de France des marches pour le climat du 26 septembre 2026"
+           data-clair-350="FOND-350-CLAIR.webp"
+           data-sombre-350="FOND-350-SOMBRE.webp"
+           data-clair-700="700-CLAIR.webp"
+           data-sombre-700="700-SOMBRE.webp"
+           src="FOND-350-CLAIR.webp">
+      <div class="mc__frontieres" aria-hidden="true"></div>
+      <svg class="mc__cercles" viewBox="0 0 350 481.13" xmlns="http://www.w3.org/2000/svg"
+           preserveAspectRatio="xMidYMid meet" role="img"
+           aria-label="Cercles proportionnels au nombre de manifestants par ville"></svg>
+      <div class="mc__labels" aria-hidden="true"></div>
+      <div class="mc__tooltip" role="status" aria-live="polite"></div>
+    </div>
+
+    <div class="mc__pied">
+      <p class="mc__note">
+        <b>À lire&nbsp;:</b> les chiffres sont ceux des organisateurs, remontés ville par ville au mouvement du 26&nbsp;septembre.
+        Ils n'ont pas été vérifiés de façon indépendante et peuvent différer des comptages de la presse ou des autorités.
+      </p>
+      <p class="mc__source">Source&nbsp;:
+        <a href="https://26septembre.org/bilan" target="_blank" rel="noopener">bilan du mouvement du 26 septembre</a>
+        · <span class="mc__maj"></span>
+      </p>
+      <p class="mc__signature">Carte&nbsp;: Sébastien EID</p>
+    </div>
+
+  </div>
+  <!-- ================================================================= -->
+
+  <!-- ============ MÉTHODOLOGIE (déroulante, hors graphique) ============ -->
+  <details class="methodo">
+    <summary>Méthodologie</summary>
+    <div class="methodo__corps">
+
+      <h3>1. Le point de départ</h3>
+      <p>
+        Je suivais l'appel à marcher «&nbsp;pour le climat, le vivant, la paix et la justice sociale&nbsp;» du samedi 26&nbsp;septembre,
+        soutenu par plus de 1&nbsp;000 organisations. Dans son bilan, le mouvement annonce «&nbsp;plus de 130&nbsp;000 personnes&nbsp;».
+        Ma question&nbsp;: où ces personnes ont-elles marché&nbsp;? Seulement dans les grandes villes, ou partout&nbsp;?
+      </p>
+
+      <h3>2. Trouver les données</h3>
+      <p>
+        Le mouvement publie un <a href="https://26septembre.org/bilan" target="_blank" rel="noopener">bilan ville par ville</a>&nbsp;:
+        chaque groupe local y indique son nombre de participants. C'est la seule source que j'ai trouvée qui couvre toutes les mobilisations.
+      </p>
+
+      <h3>3. Vérifier</h3>
+      <p>
+        Les chiffres sont-ils fiables&nbsp;? Je les ai comparés à la presse locale (franceinfo, radios ICI). Les écarts sont parfois forts&nbsp;: à Grenoble, 8&nbsp;000 selon les organisateurs, «&nbsp;près de 2&nbsp;500&nbsp;» selon ICI Isère.
+          La presse ne couvre qu'une dizaine de villes, avec des méthodes différentes. J'ai donc gardé une seule source, les organisateurs, et je l'indique clairement dans le titre et les bulles.
+      </p>
+
+      <h3>4. Récupérer les données (scraping)</h3>
+      <p>
+        La page du bilan n'offre pas de fichier à télécharger. À l'aide d'un script Python qui lit la page HTML et extrait les lignes du tableau, j'ai récupéré la donnée dans un fichier csv. En relançant le script, on peut mettre à jour nos données.
+      </p>
+
+      <h3>5. Traiter les données</h3>
+      <p>
+        Les 40&nbsp;villes sans chiffre sont gardées, mais marquées comme «&nbsp;non communiqué&nbsp;».
+        Pour placer chaque ville sur la carte (géocodage), l'<a href="https://geo.api.gouv.fr" target="_blank" rel="noopener">API officielle des communes</a> donne les coordonnées de chaque ville à partir de son nom et de son département.
+      </p>
+
+      <h3>6. Faire la carte</h3>
+      <p>
+        J'ai réutilisé un fond de carte réalisé pour un précédent projet (carte BRGM sur mon portfolio), avec son système de positionnement, en version mobile et desktop.
+        La surface des cercles est proportionnelle au nombre de participants. C'est la manière la plus adéquate pour représenter ce type de données. Les cercles les plus grands sont dessinés en dessous afin de garder visibles les plus petits.
+        Le tooltip donne le chiffre exact de chaque ville lorsque l'on passe dessus.
+        Quelques informations précèdent la carte&nbsp;: des chiffres clefs pour donner du contexte, et la légende pour lire la carte correctement.
+        Outils&nbsp;: HTML, CSS et JavaScript, sans librairie, aux couleurs de Vert.
+      </p>
+
+    </div>
+  </details>
+
+  <!-- ============ PARTIE 2 : UNE DEUXIÈME CARTE ============ -->
+  <section class="partie">
+    <p class="partie__surtitre">Partie 2 · Proposition de cartes</p>
+    <h2>Montée des eaux&nbsp;: quelles côtes sous l'eau, et qui devra partir&nbsp;?</h2>
+    <p>
+      Je ferais deux cartes. Une carte interactive de la France face à la montée des eaux, et une carte statique
+      sur un exemple en outre-mer, où le risque est déjà là.
+    </p>
+
+    <h3>Carte 1&nbsp;: la montée des eaux selon les scénarios</h3>
+    <p>
+      Une carte interactive des côtes françaises, outre-mer compris, qui montre les zones sous l'eau en 2050 et en 2100
+      selon trois scénarios du Giec&nbsp;: optimiste, moyen et pessimiste. On passe d'un scénario à l'autre avec un bouton.
+    </p>
+
+    <h3>Carte 2&nbsp;: Miquelon, un village qui déménage</h3>
+    <p>
+      À Saint-Pierre-et-Miquelon, le village de Miquelon est au niveau de la mer. Il est en train d'être reconstruit plus haut,
+      à environ un kilomètre, et environ 600 habitants vont devoir déménager.
+      La carte montrerait l'ancien village, le nouveau, et ce qui doit être déplacé (maisons, aéroport, centrale électrique, église).
+    </p>
+
+    <h3>Récupérer les données</h3>
+    <p>
+      Les projections du Giec sont téléchargeables sur l'<a href="https://sealevel.nasa.gov/ipcc-ar6-sea-level-projection-tool" target="_blank" rel="noopener">outil de la Nasa</a>.
+      Le relief des côtes vient de l'IGN. Pour Miquelon, les documents du projet de déménagement du village.
+    </p>
+
+    <h3>Mettre à jour</h3>
+    <p>
+      Les projections du Giec changent à chaque nouveau rapport, tous les six à sept ans. Les données de l'IGN sont mises à jour régulièrement.
+      La carte de Miquelon se refait à chaque étape du chantier.
+    </p>
+
+  </section>
+
+  <!-- ============ PARTIE 3 : LES VOTES DU RN ============ -->
+  <section class="partie">
+    <p class="partie__surtitre">Partie 3 · Proposition de datavisualisation</p>
+    <h2>Santé, environnement&nbsp;: les votes du RN</h2>
+    <p>
+      Faire une datavisualisation sur les votes du RN sur les sujets de santé et d'environnement pourrait être piégeux.
+      Les votes pour ou contre dépendent du contexte&nbsp;: si une loi sur la santé est proposée par le RN, ses députés votent a priori pour.
+      Cela n'indique en rien que le RN a servi ou desservi la santé, puisque cela dépend directement de la loi votée.
+    </p>
+    <p class="partie__cle">Il faut donc repartir de la loi votée.</p>
+    <p>
+      À la limite, on peut avoir un bilan avec le total des lois votées pour, contre ou en s'abstenant.
+      Mais le détail doit toujours être derrière, sinon ça ne veut rien dire.
+    </p>
+
+    <h3>Récupérer les données</h3>
+    <p>
+      Le portail <a href="https://data.assemblee-nationale.fr/travaux-parlementaires/votes" target="_blank" rel="noopener">data.assemblee-nationale.fr</a>
+      publie tous les scrutins publics de la législature (fichier <i>Scrutins.json</i>, mis à jour chaque nuit)&nbsp;: l'objet du vote, le résultat,
+      la position de chaque groupe et le vote de chaque député. Un second fichier donne l'identité des députés, leur groupe et leur circonscription.
+      Le même portail publie les dossiers législatifs et les amendements, avec leur auteur et l'exposé des motifs.
+      On peut donc relier chaque vote à sa loi et savoir qui l'a déposée.
+    </p>
+
+    <h3>Trier</h3>
+    <p>
+      On filtre les textes examinés par les commissions concernées (développement durable, affaires sociales, affaires économiques pour l'agriculture et l'énergie)
+      et par mots-clés dans l'intitulé (pesticide, PFAS, climat, eau, pollution, biodiversité, nucléaire…).
+    </p>
+
+    <h3>Mettre en forme</h3>
+    <p>
+      On part d'un schéma de l'Assemblée nationale où chaque député est un point. Les points sont regroupés par parti,
+      et leur couleur indique le vote&nbsp;: pour, contre ou abstention.
+      Autre possibilité, centrée sur le RN&nbsp;: de simples ronds ou carrés, un par député RN, colorés selon son vote.
+    </p>
+  </section>
+
+  <!-- ============ UTILISATION DE L'IA ============ -->
+  <p class="note-ia">
+    <b>Utilisation de l'IA&nbsp;:</b> j'ai utilisé l'IA pour écrire le script d'extraction des données
+    et pour mettre en forme mes textes (liens vers les sources, touches de couleur).
+  </p>
+
+  <script src="calage.js"></script>
+  <script src="marches-climat.js"></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+/* marches-climat.css — carte des marches pour le climat du 26 septembre 2026
+ * Couleurs reprises de la charte Vert (vert.eco) : pétrole #004352, menthe #7DE2B4.
+ * Police : Vend Sans (Google Fonts), comme sur le site. */
+
+.mc {
+  --mc-fg: #1a1a1a;
+  --mc-muted: #616161;
+  --mc-card: #ffffff;
+  --mc-border: #e3e6e5;
+  --mc-accent: #004352;        /* pétrole Vert */
+  --mc-cercle: #7DE2B4;        /* menthe Vert */
+  --mc-cercle-trait: #004352;
+  --mc-cercle-hover: #004352;
+  --mc-vide: #004352;
+  --mc-tt-bg: #ffffff;
+  --mc-tt-ombre: 0 2px 10px rgba(0, 40, 50, .18);
+  --mc-halo: #ffffff;
+  --mc-chip: #EEFBF5;
+  font-family: "Vend Sans", "DM Sans", system-ui, sans-serif;
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--mc-fg);
+  background: var(--mc-card);
+  border: 1px solid var(--mc-border);
+  border-radius: 8px;
+  padding: 1.1rem 1.15rem .9rem;
+  box-sizing: border-box;
+}
+.mc *, .mc *::before, .mc *::after { box-sizing: border-box; }
+.mc.is-dark {
+  --mc-fg: rgba(255, 255, 255, .87);
+  --mc-muted: #9fb0b3;
+  --mc-card: #161d20;
+  --mc-border: rgba(255, 255, 255, .16);
+  --mc-accent: #7DE2B4;
+  --mc-cercle: #7DE2B4;
+  --mc-cercle-trait: #0b2a31;
+  --mc-cercle-hover: #ffffff;
+  --mc-vide: #7DE2B4;
+  --mc-tt-bg: #1f282b;
+  --mc-tt-ombre: 0 2px 12px rgba(0, 0, 0, .5);
+  --mc-halo: #000000;
+  --mc-chip: rgba(125, 226, 180, .12);
+}
+
+/* ---- En-tête ---- */
+.mc__surtitre {
+  margin: 0 0 .35rem;
+  font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .07em;
+  color: var(--mc-accent);
+}
+.mc__titre {
+  margin: 0 0 .4rem;
+  font-family: Merriweather, Georgia, serif;
+  font-size: 1.3rem; line-height: 1.3; font-weight: 700;
+  color: var(--mc-fg);
+  text-wrap: balance;
+}
+.mc__chapo { margin: 0 0 .8rem; font-size: .93rem; line-height: 1.45; }
+
+/* ---- Chiffres clés ---- */
+.mc__chiffres {
+  display: flex; flex-wrap: wrap; gap: .4rem;
+  margin: 0 0 .8rem;
+}
+.mc__chiffre {
+  background: var(--mc-chip);
+  border-radius: 6px;
+  padding: .35rem .6rem;
+  font-size: 12.5px; line-height: 1.25;
+  color: var(--mc-muted);
+}
+.mc__chiffre b {
+  display: block;
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--mc-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Recherche + légende ---- */
+.mc__outils {
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+  gap: .6rem 1rem;
+  margin: 0 0 .5rem;
+}
+.mc__recherche { flex: 1 1 200px; max-width: 260px; }
+.mc__input {
+  width: 100%;
+  font: inherit; font-size: 14px;
+  padding: .45rem .7rem;
+  color: var(--mc-fg);
+  background: var(--mc-card);
+  border: 1.5px solid var(--mc-border);
+  border-radius: 999px;
+  outline: none;
+}
+.mc__input:focus { border-color: var(--mc-accent); }
+.mc__sr {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+.mc__legende {
+  display: flex; align-items: flex-end; gap: 1rem;
+  font-size: 12px; color: var(--mc-muted);
+}
+.mc__leg-cercles { display: block; overflow: visible; }
+.mc__leg-cercles circle {
+  fill: var(--mc-cercle); fill-opacity: .72;
+  stroke: var(--mc-cercle-trait); stroke-width: .8;
+}
+.mc__leg-cercles line { stroke: var(--mc-muted); stroke-width: .6; stroke-dasharray: 1.5 1.5; }
+.mc__leg-cercles text { fill: var(--mc-muted); font-size: 10.5px; font-family: inherit; }
+.mc__leg-vide { display: inline-flex; align-items: center; gap: .35rem; padding-bottom: 2px; }
+.mc__leg-vide svg circle { fill: none; stroke: var(--mc-vide); stroke-width: 1.2; }
+
+/* ---- Carte : couches empilées ---- */
+.mc__carte { position: relative; width: 100%; }
+.mc__fond { display: block; width: 100%; height: auto; }
+.mc__frontieres, .mc__cercles, .mc__labels {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+.mc__frontieres, .mc__labels { pointer-events: none; }
+.mc__frontieres svg, .mc__labels svg {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+}
+.mc__frontieres svg { opacity: .55; }
+.mc.is-dark .mc__frontieres { filter: invert(1); }
+
+/* Labels des grandes villes, au-dessus des cercles, avec halo */
+.mc__labels text {
+  font-family: "Vend Sans", system-ui, sans-serif;
+  font-weight: 600;
+  fill: var(--mc-fg);
+  paint-order: stroke;
+  stroke: var(--mc-halo); stroke-width: 2.4; stroke-linejoin: round;
+}
+
+/* Cercles */
+.mc__cercle {
+  fill: var(--mc-cercle);
+  fill-opacity: .72;
+  stroke: var(--mc-cercle-trait);
+  stroke-width: .5;
+  cursor: pointer;
+  transition: fill .1s, fill-opacity .1s;
+}
+/* chiffre non communiqué : cercle plein, sans couleur (fill transparent mais survolable) */
+.mc__cercle.is-vide {
+  fill: transparent; pointer-events: all;
+  stroke: var(--mc-vide); stroke-width: .7;
+}
+.mc__cercle:hover, .mc__cercle.is-actif {
+  fill: var(--mc-cercle-hover); fill-opacity: .95;
+  stroke: var(--mc-card); stroke-width: .9;
+}
+.mc__cercle:focus { outline: none; }
+.mc__cercle:focus-visible { stroke: var(--mc-accent); stroke-width: 1.6; }
+
+/* Encart outre-mer */
+.mc__encart rect { fill: var(--mc-card); fill-opacity: .85; stroke: var(--mc-border); stroke-width: .6; }
+.mc__encart text {
+  font-family: "Vend Sans", system-ui, sans-serif; font-size: 7.5px; font-weight: 500;
+  fill: var(--mc-muted);
+}
+
+/* ---- Tooltip ---- */
+.mc__tooltip {
+  position: absolute; z-index: 5;
+  width: 240px; max-width: calc(100vw - 48px);
+  transform: translate(-50%, calc(-100% - 14px));
+  pointer-events: none;
+  opacity: 0; transition: opacity .08s;
+}
+.mc__tooltip.is-visible { opacity: 1; }
+.mc__tooltip.is-dessous { transform: translate(-50%, 18px); }
+.mc__tt {
+  background: var(--mc-tt-bg);
+  border-radius: 6px;
+  box-shadow: var(--mc-tt-ombre);
+  border-top: 3px solid var(--mc-accent);
+  padding: .6rem .75rem .65rem;
+  font-size: 13px; line-height: 1.35;
+}
+.mc__tt-dep { margin: 0; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--mc-muted); }
+.mc__tt-ville { margin: .1rem 0 .45rem; font-size: 16px; font-weight: 700; }
+.mc__tt-nb { margin: 0; font-size: 22px; font-weight: 700; color: var(--mc-accent); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.mc__tt-nb small { font-size: 13px; font-weight: 500; color: var(--mc-fg); }
+.mc__tt-qui { margin: .1rem 0 0; font-size: 12px; color: var(--mc-muted); }
+.mc__tt-vide { margin: 0; color: var(--mc-muted); font-style: italic; }
+
+/* ---- Pied ---- */
+.mc__pied { margin: .7rem 0 0; font-size: 12px; line-height: 1.45; color: var(--mc-muted); }
+.mc__pied p { margin: 0 0 .35rem; }
+.mc__pied a { color: inherit; }
+.mc__note b { color: var(--mc-fg); font-weight: 600; }
+.mc__signature {
+  margin: .5rem 0 0 !important;
+  font-weight: 600; color: var(--mc-fg);
+}
+.mc__signature i { font-style: italic; }
+
+@media (max-width: 500px) {
+  .mc { padding: .9rem .8rem .75rem; }
+  .mc__titre { font-size: 1.12rem; }
+  .mc__recherche { max-width: none; }
+  .mc__legende { width: 100%; }
+}

@@ -47,6 +47,16 @@
      Productions — données + rendu de la grille
   --------------------------------------------------------------------- */
   const PRODUCTIONS = [
+    // Mis en avant : hors catégories, toujours affiché en premier quel que soit le filtre
+    {
+      title: "Marches pour le climat du 26 septembre 2026 — carte interactive",
+      category: "vert",
+      featured: true,
+      badge: "Exercice Vert",
+      type: "iframe",
+      thumb: "assets/productions/environnement/marches-climat.webp",
+      src: "assets/productions/interactif/marches-climat/",
+    },
     {
       title: "Incendies à Biscarrosse",
       category: "environnement",
@@ -169,16 +179,17 @@
     international: "International",
     politique: "Politique",
     economie: "Économie",
+    vert: "Exercice technique pour Vert",
   };
 
   const productionGrid = document.getElementById("productionGrid");
   if (productionGrid) {
     productionGrid.innerHTML = PRODUCTIONS.map((p, i) => `
       <div class="production-item" data-reveal tabindex="0" role="button"
-           data-index="${i}" data-category="${p.category}"
+           data-index="${i}" data-category="${p.category}"${p.featured ? " data-featured" : ""}
            aria-label="${p.title} — ${CATEGORY_LABEL[p.category] || p.category}">
         <span class="production-thumb" style="background-image:url('${p.thumb}')"></span>
-        ${p.type === "iframe" ? '<span class="production-badge">Interactif</span>' : ""}
+        ${p.badge ? `<span class="production-badge">${p.badge}</span>` : p.type === "iframe" ? '<span class="production-badge">Interactif</span>' : ""}
         ${p.type === "gallery" ? `<span class="production-badge">${p.srcs.length} volets</span>` : ""}
       </div>
     `).join("");
@@ -295,7 +306,7 @@
       filterBar.querySelectorAll(".filter-btn").forEach((b) => b.classList.toggle("is-active", b === btn));
       const filter = btn.dataset.filter;
       productionItems.forEach((item) => {
-        const match = filter === "all" || item.dataset.category === filter;
+        const match = filter === "all" || item.dataset.category === filter || "featured" in item.dataset;
         item.classList.toggle("is-hidden", !match);
       });
     });
