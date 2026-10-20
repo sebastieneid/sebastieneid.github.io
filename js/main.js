@@ -171,6 +171,20 @@
       thumb: "assets/productions/international/airborders.png",
       src: "assets/productions/international/airborders.png",
     },
+    {
+      title: "Bamako — les grands axes routiers autour de la capitale malienne",
+      category: "international",
+      type: "image",
+      thumb: "assets/productions/international/bamako-axes-routiers.png",
+      src: "assets/productions/international/bamako-axes-routiers.png",
+    },
+    {
+      title: "Göbekli Tepe et Karahan Tepe — sites néolithiques du sud-est de la Turquie",
+      category: "international",
+      type: "image",
+      thumb: "assets/productions/international/gobekli-tepe.png",
+      src: "assets/productions/international/gobekli-tepe.png",
+    },
   ];
 
   const CATEGORY_LABEL = {
