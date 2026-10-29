@@ -44,6 +44,33 @@
   });
 
   /* ---------------------------------------------------------------------
+     Coordonnées du footer — jamais écrites en clair dans le code source,
+     pour que les robots qui aspirent les pages ne les récupèrent pas.
+     Chaque morceau est stocké à l'envers puis réassemblé au chargement.
+  --------------------------------------------------------------------- */
+  const footerContact = document.getElementById("footerContact");
+  if (footerContact) {
+    const rev = (s) => s.split("").reverse().join("");
+    const mail = `${rev("otrac.dieneitsabes")}${String.fromCharCode(64)}${rev("moc.liamg")}`;
+    const tel = rev("100338016");
+    const telLabel = `+33 ${tel[0]} ${tel.slice(1).match(/../g).join(" ")}`;
+
+    const mailLink = document.createElement("a");
+    mailLink.href = `mailto:${mail}`;
+    mailLink.textContent = mail;
+
+    const sep = document.createElement("span");
+    sep.setAttribute("aria-hidden", "true");
+    sep.textContent = "·";
+
+    const telLink = document.createElement("a");
+    telLink.href = `tel:+33${tel}`;
+    telLink.textContent = telLabel;
+
+    footerContact.append(mailLink, sep, telLink);
+  }
+
+  /* ---------------------------------------------------------------------
      Productions — données + rendu de la grille
   --------------------------------------------------------------------- */
   const PRODUCTIONS = [
